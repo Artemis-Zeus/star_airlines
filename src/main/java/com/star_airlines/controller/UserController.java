@@ -1,5 +1,4 @@
 package com.star_airlines.controller;
-
 import com.star_airlines.pojo.Result;
 import com.star_airlines.pojo.User;
 import com.star_airlines.service.UserService;
@@ -7,7 +6,6 @@ import com.star_airlines.utils.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -85,9 +83,14 @@ public class UserController {
     //    获取积分
     @GetMapping("/point")
     public Result userPoint(@RequestHeader("token") String token_key) {
-        log.info("use point");
+        log.info("get point");
         Integer id = (Integer) JwtUtil.parseJWT(token_key).get("id");
         User user = userService.getUser(id);
         return Result.success("use point successfully", user.getPoint());
     }
+//    @GetMapping("/records")
+//    public Result userRecords(@RequestHeader("token") String token_key){
+//        Integer id = (Integer) JwtUtil.parseJWT(token_key).get("id");
+//        User user = userService.getUser(id);
+//    }
 }

@@ -9,6 +9,7 @@ import com.star_airlines.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -18,8 +19,9 @@ public class SearchServiceImpl implements SearchService {
     private SearchMapper searchMapper;
 
     @Override
-    public List<Flights> searchFlight(Flights flight) {
-        return searchMapper.search(flight);
+    public List<Flights> searchFlight(String depart, String arrival, LocalDate date, Integer type) {
+        LocalDate tomorrow = LocalDate.of(date.getYear(), date.getMonth(), date.getDayOfMonth()+1);
+        return searchMapper.search(depart,arrival,date,type,tomorrow);
     }
 
     @Override

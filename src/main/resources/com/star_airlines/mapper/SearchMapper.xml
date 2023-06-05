@@ -8,7 +8,7 @@
     <insert id="boot_ticket">
         insert into record (id, user_id, flight_id, hotel_id, car_id, days, price, type, update_time, use_point)
         VALUES (#{id}, #{userId}, #{flightId}, #{hotelId}, #{carId}, #{days}, #{price}, #{type},
-                #{updateTime}，#{usePoint})
+                #{updateTime}, #{usePoint})
     </insert>
 
     <!--    退票成功-->
@@ -32,10 +32,13 @@
     <select id="search" resultType="com.star_airlines.pojo.Flights">
         select *
         from flights
-        where arrival = #{arrival}
-          and depart = #{depart}
-          and DATE(depart_time) = #{departTime}
-          and type = #{type}
+        <where>
+            <if test="arrival!=null">arrival = #{arrival}</if>
+            <if test="depart!=null">and depart = #{depart}</if>
+            <if test="date!=null">and depart_time >= #{date}</if>
+            <if test="tomorrow!=null">and #{tomorrow} >depart_time </if>
+            <if test="type!=null">and type = #{type}</if>
+        </where>
     </select>
     <!--    酒店-->
     <select id="searchHotel" resultType="com.star_airlines.pojo.Hotel">
