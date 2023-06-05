@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.star_airlines.mapper.UserMapper">
+    <!--    注册操作-->
+    <insert id="register">
+        insert into user (id, username, password, age, address, email, phone, card_num, point)
+        VALUES (#{id}, #{username}, #{password}, #{age}, #{address}, #{email}, #{phone}, #{cardNum}, #{point})
+    </insert>
+    <!--    更新用户信息-->
+    <update id="updateAccount">
+        update user
+        <set>
+            <if test="cardNum!=null">card_num=#{cardNum},</if>
+            <if test="phone!=null">phone=#{phone},</if>
+            <if test="email!=null">email=#{email},</if>
+            <if test="password!=null">password=#{password},</if>
+            <if test="username!=null">username=#{username},</if>
+            <if test="address!=null">address=#{address}</if>
+        </set>
+        where id = #{id}
+    </update>
+    <!--    更新积分-->
+    <update id="updatePoint">
+        update user
+        set point=point + #{price}
+        where id = #{userId}
+    </update>
+    <!--    注销账户-->
+    <delete id="deleteAccount">
+        delete
+        from user
+        where id = #{id}
+    </delete>
+
+
+    <!--    查询操作-->
+    <!--    邮箱登录操作-->
+    <select id="login1" resultType="com.star_airlines.pojo.User">
+        select *
+        from user
+        where email = #{email}
+          and password = #{password}
+    </select>
+    <!--    查询数据库中是否已经存在-->
+    <select id="search" resultType="com.star_airlines.pojo.User">
+        select *
+        from user
+        where email = #{email}
+    </select>
+
+    <!--    查询账户-->
+    <select id="getUser" resultType="com.star_airlines.pojo.User">
+        select id,
+               username,
+               password,
+               age,
+               address,
+               email,
+               phone,
+               card_num,
+               point
+        from user
+        where id = #{id}
+    </select>
+    <!--    使用电话号码登录-->
+    <select id="login2" resultType="com.star_airlines.pojo.User">
+        select *
+        from user
+        where phone = #{phone}
+          and password = #{password}
+    </select>
+</mapper>

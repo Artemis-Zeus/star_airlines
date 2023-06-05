@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.star_airlines.mapper.BookMapper">
+    <!--    订退票-->
+    <!--    订票成功-->
+    <insert id="boot_ticket">
+        insert into record (id, user_id, flight_id, hotel_id, car_id, days, price, type, update_time, use_point)
+        VALUES (#{id}, #{userId}, #{flightId}, #{hotelId}, #{carId}, #{days}, #{price}, #{type},
+                #{updateTime}，#{usePoint})
+    </insert>
+
+    <!--    退票成功-->
+    <update id="refund">
+        update record
+        set type=2,
+            update_time=#{now}
+        where id = #{id}
+    </update>
+    <!--    退票后重订票-->
+    <update id="update">
+        update record
+        set type=1,
+            update_time=#{now}
+        where id = #{id}
+    </update>
+
+
+    <!--    查询操作-->
+    <!--    航班-->
+    <select id="search" resultType="com.star_airlines.pojo.Flights">
+        select *
+        from flights
+        where arrival = #{arrival}
+          and depart = #{depart}
+          and depart_time = #{departTime}
+          and type = #{type}
+    </select>
+    <!--    酒店-->
+    <select id="searchHotel" resultType="com.star_airlines.pojo.Hotel">
+        select *
+        from hotel
+        where address = #{arrival}
+    </select>
+    <!--    租车-->
+    <select id="searchCar" resultType="com.star_airlines.pojo.Car">
+        select *
+        from car
+        where address = #{arrival}
+    </select>
+    <!--    记录-->
+    <select id="searchRecord" resultType="com.star_airlines.pojo.Record">
+        select *
+        from record
+        where flight_id = #{id}
+          and user_id = #{userId}
+    </select>
+</mapper>
