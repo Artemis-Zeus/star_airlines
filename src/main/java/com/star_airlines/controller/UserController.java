@@ -1,4 +1,5 @@
 package com.star_airlines.controller;
+import com.star_airlines.pojo.Record;
 import com.star_airlines.pojo.Result;
 import com.star_airlines.pojo.User;
 import com.star_airlines.service.UserService;
@@ -7,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -88,9 +90,10 @@ public class UserController {
         User user = userService.getUser(id);
         return Result.success("use point successfully", user.getPoint());
     }
-//    @GetMapping("/records")
-//    public Result userRecords(@RequestHeader("token") String token_key){
-//        Integer id = (Integer) JwtUtil.parseJWT(token_key).get("id");
-//        User user = userService.getUser(id);
-//    }
+    @GetMapping("/records")
+    public Result userRecords(@RequestHeader("token") String token_key){
+        Integer id = (Integer) JwtUtil.parseJWT(token_key).get("id");
+        List<Record> records = userService.getRecords(id);
+        return Result.success(records);
+    }
 }

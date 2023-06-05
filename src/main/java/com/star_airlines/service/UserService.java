@@ -1,6 +1,9 @@
 package com.star_airlines.service;
 
+import com.star_airlines.pojo.Record;
 import com.star_airlines.pojo.User;
+
+import java.util.List;
 
 public interface UserService {
     User login1(String email,String password);
@@ -21,4 +24,5 @@ public interface UserService {
 
     void updatePoint(Integer userId, Integer price);
 
+    List<Record> getRecords(Integer id);
 }

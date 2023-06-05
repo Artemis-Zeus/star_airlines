@@ -20,8 +20,8 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     public List<Flights> searchFlight(String depart, String arrival, LocalDate date, Integer type) {
-        LocalDate tomorrow = LocalDate.of(date.getYear(), date.getMonth(), date.getDayOfMonth()+1);
-        return searchMapper.search(depart,arrival,date,type,tomorrow);
+        LocalDate tomorrow = LocalDate.of(date.getYear(), date.getMonth(), date.getDayOfMonth() + 1);
+        return searchMapper.search(depart, arrival, date, type, tomorrow);
     }
 
     @Override
@@ -34,23 +34,33 @@ public class SearchServiceImpl implements SearchService {
         return searchMapper.searchCar(arrival);
     }
 
+
     @Override
-    public void book_ticket(Record record) {
-        searchMapper.boot_ticket(record);
+    public Record searchRecord(Integer flightId, Integer userId) {
+        return searchMapper.searchRecord(flightId, userId);
+    }
+
+
+
+
+    @Override
+    public Integer getFlightPrice(Integer id) {
+        return searchMapper.getFlightPrice(id);
     }
 
     @Override
-    public Record searchRecord(String id,Integer userId) {
-        return searchMapper.searchRecord(id,userId);
+    public Record getRecord(String id) {
+        return searchMapper.getRecord(id);
     }
 
     @Override
-    public void update_status(String id, LocalDateTime now) {
-        searchMapper.update(id,now);
+    public Integer getHotelPrice(Integer hotelId) {
+        return searchMapper.getHotelPrice(hotelId);
     }
 
     @Override
-    public void refund(String id) {
-        searchMapper.refund(id);
+    public Integer getCarPrice(Integer carId) {
+        return searchMapper.getCarPrice(carId);
     }
+
 }

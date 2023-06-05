@@ -1,4 +1,23 @@
 package com.star_airlines.service.impl;
 
-public class BookServiceImpl {
+import com.star_airlines.mapper.BookMapper;
+import com.star_airlines.mapper.SearchMapper;
+import com.star_airlines.pojo.Record;
+import com.star_airlines.service.BookService;
+import com.star_airlines.service.SearchService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class BookServiceImpl implements BookService {
+    @Autowired
+    private BookMapper bookMapper;
+    @Override
+    public void book_ticket(Record record) {
+        bookMapper.boot_ticket(record);
+    }
+    @Override
+    public void refund(String id) {
+        bookMapper.refund(id);
+    }
 }

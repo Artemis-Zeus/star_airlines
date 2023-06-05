@@ -18,11 +18,18 @@ public interface SearchMapper {
 
     List<Car> searchCar(String arrival);
 
-    void boot_ticket(Record record);
 
-    Record searchRecord(String id,Integer userId);
 
-    void update(String id, LocalDateTime now);
+    Record searchRecord(Integer id,Integer userId);
 
-    void refund(String id);
+
+
+
+    Integer getFlightPrice(Integer id);
+
+    Record getRecord(String id);
+
+    Integer getHotelPrice(Integer hotelId);
+
+    Integer getCarPrice(Integer carId);
 }

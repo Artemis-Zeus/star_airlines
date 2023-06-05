@@ -1,7 +1,10 @@
 package com.star_airlines.mapper;
 
+import com.star_airlines.pojo.Record;
 import com.star_airlines.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 public interface UserMapper {
@@ -20,4 +23,6 @@ public interface UserMapper {
 
 
     void updatePoint(Integer userId, Integer price);
+
+    List<Record> getRecords(Integer id);
 }

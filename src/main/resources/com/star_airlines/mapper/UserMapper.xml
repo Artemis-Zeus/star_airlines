@@ -71,4 +71,9 @@
         where phone = #{phone}
           and password = #{password}
     </select>
+    <select id="getRecords" resultType="com.star_airlines.pojo.Record">
+        select *
+        from record
+        where id=#{id}
+    </select>
 </mapper>

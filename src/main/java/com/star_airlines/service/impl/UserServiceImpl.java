@@ -1,10 +1,13 @@
 package com.star_airlines.service.impl;
 
 import com.star_airlines.mapper.UserMapper;
+import com.star_airlines.pojo.Record;
 import com.star_airlines.pojo.User;
 import com.star_airlines.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -50,5 +53,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updatePoint(Integer userId, Integer price) {
         userMapper.updatePoint(userId,price);
+    }
+
+    @Override
+    public List<Record> getRecords(Integer id) {
+        return userMapper.getRecords(id);
     }
 }

@@ -3,8 +3,8 @@ import com.star_airlines.pojo.Car;
 import com.star_airlines.pojo.Flights;
 import com.star_airlines.pojo.Hotel;
 import com.star_airlines.pojo.Record;
+
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 public interface SearchService {
@@ -14,11 +14,14 @@ public interface SearchService {
 
     List<Car> searchCar(String arrival);
 
-    void book_ticket(Record record);
+    Record searchRecord(Integer flightId, Integer userId);
 
-    Record searchRecord(String id,Integer userId);
 
-    void update_status(String id, LocalDateTime now);
+    Integer getFlightPrice(Integer id);
 
-    void refund(String id);
+    Record getRecord(String id);
+
+    Integer getHotelPrice(Integer hotelId);
+
+    Integer getCarPrice(Integer carId);
 }

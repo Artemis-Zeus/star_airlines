@@ -3,30 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.star_airlines.mapper.SearchMapper">
-    <!--    订退票-->
-    <!--    订票成功-->
-    <insert id="boot_ticket">
-        insert into record (id, user_id, flight_id, hotel_id, car_id, days, price, type, update_time, use_point)
-        VALUES (#{id}, #{userId}, #{flightId}, #{hotelId}, #{carId}, #{days}, #{price}, #{type},
-                #{updateTime}, #{usePoint})
-    </insert>
-
-    <!--    退票成功-->
-    <update id="refund">
-        update record
-        set type=2,
-            update_time=#{now}
-        where id = #{id}
-    </update>
-    <!--    退票后重订票-->
-    <update id="update">
-        update record
-        set type=1,
-            update_time=#{now}
-        where id = #{id}
-    </update>
-
-
     <!--    查询操作-->
     <!--    航班-->
     <select id="search" resultType="com.star_airlines.pojo.Flights">
@@ -36,7 +12,7 @@
             <if test="arrival!=null">arrival = #{arrival}</if>
             <if test="depart!=null">and depart = #{depart}</if>
             <if test="date!=null">and depart_time >= #{date}</if>
-            <if test="tomorrow!=null">and #{tomorrow} >depart_time </if>
+            <if test="tomorrow!=null">and #{tomorrow} >depart_time</if>
             <if test="type!=null">and type = #{type}</if>
         </where>
     </select>
@@ -58,5 +34,29 @@
         from record
         where flight_id = #{id}
           and user_id = #{userId}
+    </select>
+    <!--    机票金额-->
+    <select id="getFlightPrice" resultType="java.lang.Integer">
+        select price
+        from record
+        where id = #{id}
+    </select>
+    <!--    获取酒店价格-->
+    <select id="getHotelPrice" resultType="java.lang.Integer">
+        select price
+        from hotel
+        where id = #{hotelId}
+    </select>
+    <!--    获取租车价格-->
+    <select id="getCarPrice" resultType="java.lang.Integer">
+        select price
+        from car
+        where id = #{carId}
+    </select>
+    <!--    获取单条记录-->
+    <select id="getRecord" resultType="com.star_airlines.pojo.Record">
+        select *
+        from record
+        where id = #{id}
     </select>
 </mapper>
