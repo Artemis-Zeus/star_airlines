@@ -24,5 +24,6 @@ public interface UserService {
 
     void updatePoint(Integer userId, Integer price);
 
-    List<Record> getRecords(Integer id);
+
+    List<Record> recordList(Integer id);
 }

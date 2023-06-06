@@ -56,7 +56,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Record> getRecords(Integer id) {
-        return userMapper.getRecords(id);
+    public List<Record> recordList(Integer id) {
+        return userMapper.recordList(id);
     }
+
 }

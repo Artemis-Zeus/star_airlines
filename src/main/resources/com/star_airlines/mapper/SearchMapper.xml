@@ -28,13 +28,6 @@
         from car
         where address = #{arrival}
     </select>
-    <!--    记录-->
-    <select id="searchRecord" resultType="com.star_airlines.pojo.Record">
-        select *
-        from record
-        where flight_id = #{id}
-          and user_id = #{userId}
-    </select>
     <!--    机票金额-->
     <select id="getFlightPrice" resultType="java.lang.Integer">
         select price
@@ -58,5 +51,10 @@
         select *
         from record
         where id = #{id}
+    </select>
+    <select id="searchRecord" resultType="com.star_airlines.pojo.Record">
+        select *
+        from record
+        where user_id=#{userId} and id=#{id}
     </select>
 </mapper>

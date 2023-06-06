@@ -1,10 +1,8 @@
 package com.star_airlines.service.impl;
 
 import com.star_airlines.mapper.BookMapper;
-import com.star_airlines.mapper.SearchMapper;
 import com.star_airlines.pojo.Record;
 import com.star_airlines.service.BookService;
-import com.star_airlines.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

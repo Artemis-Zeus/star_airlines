@@ -5,8 +5,8 @@
 <mapper namespace="com.star_airlines.mapper.UserMapper">
     <!--    注册操作-->
     <insert id="register">
-        insert into user (id, username, password, age, address, email, phone, card_num, point)
-        VALUES (#{id}, #{username}, #{password}, #{age}, #{address}, #{email}, #{phone}, #{cardNum}, #{point})
+        insert into user (username, password,  email, phone, card_num)
+        VALUES (#{username}, #{password},  #{email}, #{phone}, #{cardNum})
     </insert>
     <!--    更新用户信息-->
     <update id="updateAccount">
@@ -16,8 +16,7 @@
             <if test="phone!=null">phone=#{phone},</if>
             <if test="email!=null">email=#{email},</if>
             <if test="password!=null">password=#{password},</if>
-            <if test="username!=null">username=#{username},</if>
-            <if test="address!=null">address=#{address}</if>
+            <if test="username!=null">username=#{username}</if>
         </set>
         where id = #{id}
     </update>
@@ -55,8 +54,6 @@
         select id,
                username,
                password,
-               age,
-               address,
                email,
                phone,
                card_num,
@@ -71,9 +68,10 @@
         where phone = #{phone}
           and password = #{password}
     </select>
-    <select id="getRecords" resultType="com.star_airlines.pojo.Record">
+    <!--    记录-->
+    <select id="recordList" resultType="com.star_airlines.pojo.Record">
         select *
         from record
-        where id=#{id}
+        where user_id = #{id}
     </select>
 </mapper>

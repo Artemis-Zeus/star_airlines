@@ -5,6 +5,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,4 +26,20 @@ class StarAirlinesApplicationTests {
                 .compact();
         System.out.println(Jwt);
     }
+
+//    时间转换测试
+    @Test
+    public void TimeConvert(){
+        LocalDate date= LocalDate.of(2023,6,6);
+        LocalDateTime localDateTime = date.atStartOfDay();
+        LocalDateTime now=LocalDateTime.now();
+        if (now.isAfter(localDateTime)){
+            System.out.println(now);
+        }
+        else {
+            System.out.println(localDateTime);
+        }
+
+    }
+
 }

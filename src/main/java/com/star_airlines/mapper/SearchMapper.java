@@ -12,21 +12,18 @@ import java.util.List;
 
 @Mapper
 public interface SearchMapper {
-    List<Flights> search(String depart, String arrival, LocalDate date, Integer type,LocalDate tomorrow);
+    List<Flights> search(String depart, String arrival, LocalDateTime date, Integer type,LocalDate tomorrow);
 
     List<Hotel> searchHotel(String arrival);
 
     List<Car> searchCar(String arrival);
 
-
-
+//    检测是否有重复航班
     Record searchRecord(Integer id,Integer userId);
-
-
-
 
     Integer getFlightPrice(Integer id);
 
+//    获取订单记录
     Record getRecord(String id);
 
     Integer getHotelPrice(Integer hotelId);

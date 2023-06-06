@@ -17,4 +17,5 @@ public class Flights {
     private LocalDateTime arrivalTime;
     private Integer price;
     private Integer type;
+    private String name;
 }

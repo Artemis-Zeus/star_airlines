@@ -8,11 +8,9 @@ import com.star_airlines.service.SearchService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -25,11 +23,10 @@ public class SearchController {
     @GetMapping("/flight")
     public Result get_flights(String depart, String arrival, LocalDate date, Integer type){
         log.info(" 查询航班");
-        LocalDateTime localDateTime1 = date.atStartOfDay();
-        log.info(String.valueOf(localDateTime1));
+        if (date==null)
+            date=LocalDate.now();
         List<Flights> flights= searchService.searchFlight(depart,arrival,date,type);
         return Result.success(flights);
-//        return Result.success(1);
     }
 //    查询酒店
     @GetMapping("/hotel")

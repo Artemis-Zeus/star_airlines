@@ -47,7 +47,7 @@ public class UserController {
         log.info("当前在注册操作");
         User user = userService.search(userInfo);
         if (user != null) {
-            return Result.error("The account is exist.");
+            return Result.error("this email has been used.");
         } else {
             userService.register(userInfo);
             return Result.success("create account successfully.");
@@ -88,12 +88,13 @@ public class UserController {
         log.info("get point");
         Integer id = (Integer) JwtUtil.parseJWT(token_key).get("id");
         User user = userService.getUser(id);
-        return Result.success("use point successfully", user.getPoint());
+        return Result.success("query point successfully", user.getPoint());
     }
-    @GetMapping("/records")
+    @GetMapping("/account/records")
     public Result userRecords(@RequestHeader("token") String token_key){
+        log.info("get records");
         Integer id = (Integer) JwtUtil.parseJWT(token_key).get("id");
-        List<Record> records = userService.getRecords(id);
+        List<Record> records = userService.recordList(id);
         return Result.success(records);
     }
 }
