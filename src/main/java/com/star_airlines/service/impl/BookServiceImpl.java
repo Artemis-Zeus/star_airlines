@@ -6,6 +6,8 @@ import com.star_airlines.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class BookServiceImpl implements BookService {
     @Autowired
@@ -16,6 +18,6 @@ public class BookServiceImpl implements BookService {
     }
     @Override
     public void refund(String id) {
-        bookMapper.refund(id);
+        bookMapper.refund(id, LocalDateTime.now());
     }
 }

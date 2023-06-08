@@ -19,7 +19,7 @@ public interface SearchMapper {
     List<Car> searchCar(String arrival);
 
 //    检测是否有重复航班
-    Record searchRecord(Integer id,Integer userId);
+    Record searchRecord(Integer flightId,Integer userId);
 
     Integer getFlightPrice(Integer id);
 

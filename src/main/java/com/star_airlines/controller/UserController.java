@@ -7,11 +7,13 @@ import com.star_airlines.utils.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @RestController
+@CrossOrigin
 @Slf4j
 public class UserController {
     @Autowired
@@ -21,7 +23,6 @@ public class UserController {
     @PostMapping("/login")
     public Result login(String account, String password) {
         User user;
-        log.info(account,password);
         if (account.contains("@")) {
             log.info("当前在邮箱操作");
             user = userService.login1(account, password);
@@ -83,7 +84,7 @@ public class UserController {
     }
 
     //    获取积分
-    @GetMapping("/point")
+    @GetMapping("/account/point")
     public Result userPoint(@RequestHeader("token") String token_key) {
         log.info("get point");
         Integer id = (Integer) JwtUtil.parseJWT(token_key).get("id");

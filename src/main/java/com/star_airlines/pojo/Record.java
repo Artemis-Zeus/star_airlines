@@ -19,5 +19,5 @@ public class Record {
     private Integer price;
     private Integer type;
     private LocalDateTime updateTime;
-    private Integer usePoint;
+    private Integer usePoint=0;
 }

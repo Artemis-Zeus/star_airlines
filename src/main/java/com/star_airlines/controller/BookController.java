@@ -9,16 +9,14 @@ import com.star_airlines.service.UserService;
 import com.star_airlines.utils.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Slf4j
 @RestController
+@CrossOrigin
 public class BookController {
     @Autowired
     private UserService userService;
@@ -32,6 +30,7 @@ public class BookController {
     public Result book_flight(@RequestHeader("token") String token_key, @RequestBody Record record) {
         log.info("订票事务开始");
         Integer id = (Integer) JwtUtil.parseJWT(token_key).get("id");
+        System.out.println(record);
         Integer mount = 0;
 
 //        校验用户信息阶段
@@ -60,7 +59,7 @@ public class BookController {
             mount += searchService.getCarPrice(record.getCarId());
         }
         record.setPrice(mount);
-        if (record.getUsePoint() == 1) {
+        if (record.getUsePoint() > 1) {
             userService.updatePoint(id, -500);
         }
 
@@ -68,28 +67,20 @@ public class BookController {
         record.setId(UUID.randomUUID().toString());
         record.setUpdateTime(LocalDateTime.now());
         bookService.book_ticket(record);
+        userService.updatePoint(id,mount);
         return Result.success("预订成功", record);
     }
 
     //    退票
-    @PostMapping("book/refund")
-    public Result refund(@RequestHeader("token") String token_key, @RequestBody String id) {
+    @PostMapping("/book/refund")
+    public Result refund(@RequestHeader("token") String token_key, String id) {
         bookService.refund(id);
+        log.info("pass");
         Record record = searchService.getRecord(id);
-        Integer mount = 0;
-        if (record.getFlightId() != null) {
-            mount += searchService.getFlightPrice(record.getFlightId());
-        }
-        if (record.getHotelId() != null) {
-            mount += record.getDays() * searchService.getHotelPrice(record.getHotelId());
-        }
-        if (record.getCarId() != null) {
-            mount += searchService.getCarPrice(record.getCarId());
-        }
-        Integer UserId = (Integer) JwtUtil.parseJWT(token_key).get("id");
         if(record.getUsePoint()==1){
-            userService.updatePoint(UserId, 500);
+            userService.updatePoint(record.getUserId(), 500);
         }
-        return Result.success("退款成功",mount);
+        userService.updatePoint(record.getUserId(), -record.getPrice());
+        return Result.success("退款成功",record.getPrice());
     }
 }

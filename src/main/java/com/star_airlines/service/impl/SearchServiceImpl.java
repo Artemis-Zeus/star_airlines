@@ -45,9 +45,6 @@ public class SearchServiceImpl implements SearchService {
         return searchMapper.searchRecord(flightId, userId);
     }
 
-
-
-
     @Override
     public Integer getFlightPrice(Integer id) {
         return searchMapper.getFlightPrice(id);
