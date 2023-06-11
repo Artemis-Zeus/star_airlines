@@ -51,9 +51,8 @@
 
     <!--    查询账户-->
     <select id="getUser" resultType="com.star_airlines.pojo.User">
-        select id,
+        select
                username,
-               password,
                email,
                phone,
                card_num,

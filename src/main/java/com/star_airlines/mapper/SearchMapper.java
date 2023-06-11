@@ -29,4 +29,6 @@ public interface SearchMapper {
     Integer getHotelPrice(Integer hotelId);
 
     Integer getCarPrice(Integer carId);
+
+    List<String> searchAddress();
 }

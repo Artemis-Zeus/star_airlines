@@ -6,7 +6,7 @@
     <!--    查询操作-->
     <!--    航班-->
     <select id="search" resultType="com.star_airlines.pojo.Flights">
-        select *
+        select depart, arrival, depart_time, arrival_time, price, type, name
         from flights
         <where>
             <if test="arrival!=null">arrival = #{arrival}</if>
@@ -18,13 +18,13 @@
     </select>
     <!--    酒店-->
     <select id="searchHotel" resultType="com.star_airlines.pojo.Hotel">
-        select *
+        select price, name
         from hotel
         where address = #{arrival}
     </select>
     <!--    租车-->
     <select id="searchCar" resultType="com.star_airlines.pojo.Car">
-        select *
+        select price, brand
         from car
         where address = #{arrival}
     </select>
@@ -56,5 +56,9 @@
         select *
         from record
         where user_id=#{userId} and flight_id=#{flightId}
+    </select>
+    <select id="searchAddress" resultType="java.lang.String">
+        select distinct depart
+        from flights
     </select>
 </mapper>

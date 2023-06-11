@@ -24,4 +24,6 @@ public interface SearchService {
     Integer getHotelPrice(Integer hotelId);
 
     Integer getCarPrice(Integer carId);
+
+    List<String> searchAddress();
 }

@@ -65,4 +65,9 @@ public class SearchServiceImpl implements SearchService {
         return searchMapper.getCarPrice(carId);
     }
 
+    @Override
+    public List<String> searchAddress() {
+        return searchMapper.searchAddress();
+    }
+
 }
