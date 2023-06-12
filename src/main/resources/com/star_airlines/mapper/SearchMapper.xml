@@ -57,8 +57,17 @@
         from record
         where user_id=#{userId} and flight_id=#{flightId}
     </select>
-    <select id="searchAddress" resultType="java.lang.String">
+    <select id="searchDepart" resultType="java.lang.String">
         select distinct depart
         from flights
     </select>
+    <select id="searchArrival" resultType="java.lang.String">
+        select distinct arrival
+        from flights
+    </select>
+    <select id="searchAllHotel" resultType="java.util.Map">
+        select name,address
+        from hotel
+    </select>
+
 </mapper>

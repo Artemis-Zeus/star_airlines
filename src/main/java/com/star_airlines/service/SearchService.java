@@ -6,6 +6,7 @@ import com.star_airlines.pojo.Record;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public interface SearchService {
     List<Flights> searchFlight(String depart, String arrival, LocalDate date, Integer type);
@@ -25,5 +26,9 @@ public interface SearchService {
 
     Integer getCarPrice(Integer carId);
 
-    List<String> searchAddress();
+    List<String> searchDepart();
+
+    List<String> searchArrival();
+
+    List<Map<String,String>> searchAllHotel();
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SearchServiceImpl implements SearchService {
@@ -66,8 +67,18 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
-    public List<String> searchAddress() {
-        return searchMapper.searchAddress();
+    public List<String> searchDepart() {
+        return searchMapper.searchDepart();
+    }
+
+    @Override
+    public List<String> searchArrival() {
+        return searchMapper.searchArrival();
+    }
+
+    @Override
+    public List<Map<String,String>> searchAllHotel() {
+        return searchMapper.searchAllHotel();
     }
 
 }

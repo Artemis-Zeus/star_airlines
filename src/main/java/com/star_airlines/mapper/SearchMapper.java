@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface SearchMapper {
@@ -30,5 +31,10 @@ public interface SearchMapper {
 
     Integer getCarPrice(Integer carId);
 
-    List<String> searchAddress();
+    List<String> searchDepart();
+
+    List<String> searchArrival();
+
+    @SuppressWarnings("MybatisXMapperMethodInspection")
+    List<Map<String,String>> searchAllHotel();
 }

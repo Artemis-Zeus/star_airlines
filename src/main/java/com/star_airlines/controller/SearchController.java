@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin
@@ -49,21 +49,25 @@ public class SearchController {
     }
 
     //    查询所有地点
-    @GetMapping("/address")
-    public Result get_address() {
-        log.info("search address");
-        List<String> address = searchService.searchAddress();
-        List<String> address1 = new ArrayList<>();
-        List<String> address2 = new ArrayList<>();
-        for (int i = 0; i < address.size(); i++) {
-            if (i % 2 == 0) {
-                address1.add(address.get(i));
-            } else address2.add(address.get(i));
-        }
-        List res = new ArrayList<>();
-        res.add(address1);
-        res.add(address2);
-        return Result.success(res);
+    @GetMapping("/depart")
+    public Result get_depart() {
+        log.info("search depart");
+        List<String> depart = searchService.searchDepart();
+        return Result.success(depart);
+    }
+
+    @GetMapping("/arrival")
+    public Result get_arrival() {
+        log.info("search arrival");
+        List<String> arrival = searchService.searchArrival();
+        return Result.success(arrival);
+    }
+
+    @GetMapping("/hotels")
+    public Result get_hotel() {
+        log.info("search hotel");
+        List<Map<String,String>> hotels = searchService.searchAllHotel();
+        return Result.success(hotels);
     }
 }
 
