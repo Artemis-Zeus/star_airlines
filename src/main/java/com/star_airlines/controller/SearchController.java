@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RestController
 @CrossOrigin
@@ -49,18 +52,17 @@ public class SearchController {
     }
 
     //    查询所有地点
-    @GetMapping("/depart")
-    public Result get_depart() {
-        log.info("search depart");
-        List<String> depart = searchService.searchDepart();
-        return Result.success(depart);
-    }
 
-    @GetMapping("/arrival")
+    @GetMapping("/flight_address")
     public Result get_arrival() {
         log.info("search arrival");
         List<String> arrival = searchService.searchArrival();
-        return Result.success(arrival);
+        List<String> depart =searchService.searchDepart();
+        List<String> collect = Stream.of(arrival, depart)
+                .flatMap(Collection::stream)
+                .distinct()
+                .collect(Collectors.toList());
+        return Result.success(collect);
     }
 
     @GetMapping("/hotels")
