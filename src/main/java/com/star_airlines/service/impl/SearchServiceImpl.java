@@ -21,7 +21,7 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     public List<Flights> searchFlight(String depart, String arrival, LocalDate date, Integer type) {
-        LocalDate tomorrow = LocalDate.of(date.getYear(), date.getMonth(), date.getDayOfMonth() + 1);
+        LocalDate tomorrow = date.plusDays(1);
         LocalDateTime localDateTime = date.atStartOfDay();
         LocalDateTime now=LocalDateTime.now();
         if (now.isAfter(localDateTime)){
