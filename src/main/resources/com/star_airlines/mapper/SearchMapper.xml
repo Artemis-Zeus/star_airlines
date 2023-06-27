@@ -66,7 +66,7 @@
         from flights
     </select>
     <select id="searchAllHotel" resultType="java.util.Map">
-        select name,address
+        select name,address,price
         from hotel
     </select>
 
