@@ -1,6 +1,5 @@
 package com.star_airlines.controller;
 
-import com.star_airlines.pojo.Car;
 import com.star_airlines.pojo.Flights;
 import com.star_airlines.pojo.Hotel;
 import com.star_airlines.pojo.Result;
@@ -44,12 +43,7 @@ public class SearchController {
     }
 
     //    查询租车
-    @GetMapping("/car")
-    public Result get_car(String arrival) {
-        log.info("查询酒店");
-        List<Car> car = searchService.searchCar(arrival);
-        return Result.success(car);
-    }
+
 
     //    查询所有地点
 

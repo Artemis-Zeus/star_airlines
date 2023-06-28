@@ -1,5 +1,4 @@
 package com.star_airlines.service;
-import com.star_airlines.pojo.Car;
 import com.star_airlines.pojo.Flights;
 import com.star_airlines.pojo.Hotel;
 import com.star_airlines.pojo.Record;
@@ -13,7 +12,6 @@ public interface SearchService {
 
     List<Hotel> searchHotel(String arrival);
 
-    List<Car> searchCar(String arrival);
 
     Record searchRecord(Integer flightId, Integer userId);
 
@@ -24,7 +22,6 @@ public interface SearchService {
 
     Integer getHotelPrice(Integer hotelId);
 
-    Integer getCarPrice(Integer carId);
 
     List<String> searchDepart();
 

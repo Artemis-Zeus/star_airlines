@@ -1,6 +1,5 @@
 package com.star_airlines.mapper;
 
-import com.star_airlines.pojo.Car;
 import com.star_airlines.pojo.Flights;
 import com.star_airlines.pojo.Hotel;
 import com.star_airlines.pojo.Record;
@@ -17,8 +16,6 @@ public interface SearchMapper {
 
     List<Hotel> searchHotel(String arrival);
 
-    List<Car> searchCar(String arrival);
-
 //    检测是否有重复航班
     Record searchRecord(Integer flightId,Integer userId);
 
@@ -29,7 +26,6 @@ public interface SearchMapper {
 
     Integer getHotelPrice(Integer hotelId);
 
-    Integer getCarPrice(Integer carId);
 
     List<String> searchDepart();
 

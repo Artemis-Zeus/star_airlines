@@ -22,12 +22,6 @@
         from hotel
         where address = #{arrival}
     </select>
-    <!--    租车-->
-    <select id="searchCar" resultType="com.star_airlines.pojo.Car">
-        select price, brand
-        from car
-        where address = #{arrival}
-    </select>
     <!--    机票金额-->
     <select id="getFlightPrice" resultType="java.lang.Integer">
         select price
@@ -39,12 +33,6 @@
         select price
         from hotel
         where id = #{hotelId}
-    </select>
-    <!--    获取租车价格-->
-    <select id="getCarPrice" resultType="java.lang.Integer">
-        select price
-        from car
-        where id = #{carId}
     </select>
     <!--    获取单条记录-->
     <select id="getRecord" resultType="com.star_airlines.pojo.Record">

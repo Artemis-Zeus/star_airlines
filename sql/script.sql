@@ -1,12 +1,3 @@
-create table car
-(
-    id      int auto_increment
-        primary key,
-    address varchar(20) not null,
-    price   int         not null,
-    brand   varchar(20) not null
-);
-
 create table flights
 (
     id           int         not null
@@ -26,7 +17,7 @@ create table hotel
         primary key,
     address varchar(20) not null,
     price   int         not null,
-    name    varchar(20) not null
+    name    varchar(30) not null
 );
 
 create table user
@@ -38,7 +29,8 @@ create table user
     email    varchar(20)   not null,
     phone    varchar(20)   null,
     card_num varchar(20)   null,
-    point    int default 0 null
+    point    int default 0 null,
+    avatar   int default 0 not null
 );
 
 create table record
@@ -49,7 +41,6 @@ create table record
     flight_id   int          null,
     hotel_id    int          null,
     days        int          null,
-    car_id      int          null,
     price       int          null,
     type        int          not null comment 'Flight:1-book 2-Refund',
     update_time datetime     not null,

@@ -6,8 +6,8 @@
     <!--    订退票-->
     <!--    订票成功-->
     <insert id="boot_ticket">
-        insert into record (id, user_id, flight_id, hotel_id, car_id, days, price, type, update_time, use_point)
-        VALUES (#{id}, #{userId}, #{flightId}, #{hotelId}, #{carId}, #{days}, #{price}, #{type},
+        insert into record (id, user_id, flight_id, hotel_id,  days, price, type, update_time, use_point)
+        VALUES (#{id}, #{userId}, #{flightId}, #{hotelId},  #{days}, #{price}, #{type},
                 #{updateTime},#{usePoint})
     </insert>
 

@@ -1,7 +1,6 @@
 package com.star_airlines.service.impl;
 
 import com.star_airlines.mapper.SearchMapper;
-import com.star_airlines.pojo.Car;
 import com.star_airlines.pojo.Flights;
 import com.star_airlines.pojo.Hotel;
 import com.star_airlines.pojo.Record;
@@ -35,11 +34,6 @@ public class SearchServiceImpl implements SearchService {
         return searchMapper.searchHotel(arrival);
     }
 
-    @Override
-    public List<Car> searchCar(String arrival) {
-        return searchMapper.searchCar(arrival);
-    }
-
 
     @Override
     public Record searchRecord(Integer flightId, Integer userId) {
@@ -61,10 +55,6 @@ public class SearchServiceImpl implements SearchService {
         return searchMapper.getHotelPrice(hotelId);
     }
 
-    @Override
-    public Integer getCarPrice(Integer carId) {
-        return searchMapper.getCarPrice(carId);
-    }
 
     @Override
     public List<String> searchDepart() {

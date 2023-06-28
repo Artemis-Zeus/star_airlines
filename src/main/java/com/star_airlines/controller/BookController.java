@@ -55,9 +55,6 @@ public class BookController {
         if (record.getHotelId() != null) {
             mount += searchService.getHotelPrice(record.getHotelId()) * record.getDays();
         }
-        if (record.getCarId() != null) {
-            mount += searchService.getCarPrice(record.getCarId());
-        }
         record.setPrice(mount);
         if (record.getUsePoint() > 1) {
             userService.updatePoint(id, -500);
