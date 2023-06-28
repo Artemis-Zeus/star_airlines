@@ -18,7 +18,7 @@
     </select>
     <!--    酒店-->
     <select id="searchHotel" resultType="com.star_airlines.pojo.Hotel">
-        select price, name
+        select *
         from hotel
         where address = #{arrival}
     </select>
