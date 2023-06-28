@@ -10,8 +10,11 @@ import java.util.Map;
 public interface SearchService {
     List<Flights> searchFlight(String depart, String arrival, LocalDate date, Integer type);
 
+    Flights getFlight(Integer id);
+
     List<Hotel> searchHotel(String arrival);
 
+    Hotel getHotel(Integer id);
 
     Record searchRecord(Integer flightId, Integer userId);
 

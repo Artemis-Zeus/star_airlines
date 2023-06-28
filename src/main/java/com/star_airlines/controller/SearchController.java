@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
@@ -26,8 +27,12 @@ public class SearchController {
 
     //    查询航班
     @GetMapping("/flight")
-    public Result get_flights(String depart, String arrival, LocalDate date, Integer type) {
+    public Result get_flights(@RequestParam(required = false) Integer id, String depart, String arrival, LocalDate date, Integer type) {
         log.info(" 查询航班");
+        if (id!=null){
+            System.out.println(id);
+            return Result.success(searchService.getFlight(id));
+        }
         if (date == null)
             date = LocalDate.now();
         List<Flights> flights = searchService.searchFlight(depart, arrival, date, type);

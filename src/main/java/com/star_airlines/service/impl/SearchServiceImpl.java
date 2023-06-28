@@ -30,8 +30,18 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
+    public Flights getFlight(Integer id) {
+        return searchMapper.getFlight(id);
+    }
+
+    @Override
     public List<Hotel> searchHotel(String arrival) {
         return searchMapper.searchHotel(arrival);
+    }
+
+    @Override
+    public Hotel getHotel(Integer id) {
+        return searchMapper.getHotel(id);
     }
 
 

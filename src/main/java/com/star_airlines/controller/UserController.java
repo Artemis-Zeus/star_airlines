@@ -1,13 +1,16 @@
 package com.star_airlines.controller;
+import com.star_airlines.pojo.Flights;
 import com.star_airlines.pojo.Record;
 import com.star_airlines.pojo.Result;
 import com.star_airlines.pojo.User;
+import com.star_airlines.service.SearchService;
 import com.star_airlines.service.UserService;
 import com.star_airlines.utils.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +21,9 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private SearchService searchService;
+
 
     //    登录操作
     @PostMapping("/login")
@@ -97,5 +103,37 @@ public class UserController {
         Integer id = (Integer) JwtUtil.parseJWT(token_key).get("id");
         List<Record> records = userService.recordList(id);
         return Result.success(records);
+    }
+    @GetMapping("/account/flight_record")
+    public Result flightRecord(@RequestHeader("token") String token_key){
+        log.info("get flight records");
+        Integer id=(Integer) JwtUtil.parseJWT(token_key).get("id");
+        List<Record> records = userService.recordList(id);
+        List<Map> flightRecords=new ArrayList<>();
+        for (Record record : records) {
+            if (record.getFlightId() != null) {
+                Map<String, Object> flightRecord=new HashMap<>();
+                flightRecord.put("flightInfo", searchService.getFlight(record.getFlightId()));
+                flightRecord.put("recordInfo", record);
+                flightRecords.add(flightRecord);
+            }
+        }
+        return Result.success(flightRecords);
+    }
+    @GetMapping("/account/hotel_record")
+    public Result hotelRecord(@RequestHeader("token") String token_key){
+        log.info("get hotel records");
+        Integer id=(Integer) JwtUtil.parseJWT(token_key).get("id");
+        List<Record> records = userService.recordList(id);
+        List<Map> HotelRecords=new ArrayList<>();
+        for (Record record : records) {
+            if (record.getHotelId() != null) {
+                Map<String, Object> hotelRecord=new HashMap<>();
+                hotelRecord.put("hotelInfo", searchService.getHotel(record.getHotelId()));
+                hotelRecord.put("recordInfo", record);
+                HotelRecords.add(hotelRecord);
+            }
+        }
+        return Result.success(HotelRecords);
     }
 }

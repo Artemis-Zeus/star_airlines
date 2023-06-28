@@ -4,6 +4,7 @@ import com.star_airlines.pojo.Flights;
 import com.star_airlines.pojo.Hotel;
 import com.star_airlines.pojo.Record;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -33,4 +34,10 @@ public interface SearchMapper {
 
     @SuppressWarnings("MybatisXMapperMethodInspection")
     List<Map<String,String>> searchAllHotel();
+
+    @Select("select * from flights where id=#{id}")
+    Flights getFlight(Integer id);
+
+    @Select("select * from hotel where id=#{id}")
+    Hotel getHotel(Integer id);
 }

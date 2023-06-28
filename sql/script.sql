@@ -42,7 +42,6 @@ create table record
     hotel_id    int          null,
     days        int          null,
     price       int          null,
-    type        int          not null comment 'Flight:1-book 2-Refund',
     update_time datetime     not null,
     use_point   int          not null comment '0-不用积分 1-使用积分（-500）',
     constraint user_id
