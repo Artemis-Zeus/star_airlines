@@ -6,7 +6,7 @@
     <!--    查询操作-->
     <!--    航班-->
     <select id="search" resultType="com.star_airlines.pojo.Flights">
-        select depart, arrival, depart_time, arrival_time, price, type, name
+        select id, depart, arrival, depart_time, arrival_time, price, type, name
         from flights
         <where>
             <if test="arrival!=null">arrival = #{arrival}</if>

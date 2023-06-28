@@ -39,7 +39,6 @@ class StarAirlinesApplicationTests {
         else {
             System.out.println(localDateTime);
         }
-
     }
 
 }
