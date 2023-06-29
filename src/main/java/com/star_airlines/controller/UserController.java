@@ -17,6 +17,7 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin
+
 @Slf4j
 public class UserController {
     @Autowired
