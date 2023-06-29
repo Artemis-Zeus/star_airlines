@@ -44,6 +44,7 @@ create table record
     price       int          null,
     update_time datetime     not null,
     use_point   int          not null comment '0-不用积分 1-使用积分（-500）',
+    type        int          null,
     constraint user_id
         foreign key (user_id) references user (id)
 );
